@@ -1,4 +1,4 @@
-package med.voll.api.paciente;
+package med.voll.api.domain.paciente;
 
 import jakarta.annotation.Nonnull;
 import org.springframework.hateoas.EntityModel;
