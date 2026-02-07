@@ -15,6 +15,7 @@ import java.util.Date;
 
 @Service
 public class TokenService {
+    private static final String ISSUER = "API Voll.med";
 
     @Value("${api.security.token.secret}")
     private String secret;
@@ -23,7 +24,7 @@ public class TokenService {
         try {
             Algorithm algoritmo = Algorithm.HMAC256(secret);
             return JWT.create()
-                    .withIssuer("API Voll.med")
+                    .withIssuer(ISSUER)
                     .withSubject(usuario.getLogin())
                     .withExpiresAt(fechaExpiracion())
                     .sign(algoritmo);
@@ -40,7 +41,7 @@ public class TokenService {
         try {
             Algorithm algoritmo = Algorithm.HMAC256(secret);
             return JWT.require(algoritmo)
-                    .withIssuer("API Voll.med")
+                    .withIssuer(ISSUER)
                     .build()
                     .verify(tokenJWT)
                     .getSubject();
